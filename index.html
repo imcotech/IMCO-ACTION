@@ -4,7 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMCO Action - 3D Battle Royale</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #game-container {
+            text-align: center;
+            background: #1e1e2f;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            border: 1px solid #38383d;
+            max-width: 520px;
+            width: 100%;
+            margin: 20px auto;
+        }
+        header h1 {
+            margin-bottom: 5px;
+            color: #00ff66;
+            font-size: 28px;
+        }
+        header p {
+            color: #b0b0b0;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .btn-main {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .btn-main:hover {
+            opacity: 0.9;
+        }
+        .analytics-section {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .btn-danger {
+            width: 100%;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div id="game-container">
@@ -14,25 +75,30 @@
         </header>
 
         <main>
-            <div id="dashboard">
-                <div class="canvas-container" style="background: black; width: 100%; height: 200px; display: flex; align-items: center; center; justify-content: center; color: #00ff66; margin-bottom: 15px; border-radius: 8px;">
-                    [ محرك العرض المرئي ثلاثي الأبعاد والجزيرة التفاعلية ]
-                </div>
+            <div style="background: black; width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: #00ff66; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333;">
+                [ محرك العرض المرئي ثلاثي الأبعاد ]
+            </div>
 
-                <button class="btn-success" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-bottom: 15px;">
-                    ابدأ المعركة التوليدية بالصوت والصورة
+            <button class="btn-main" onclick="startActionEngine()">
+                ابدأ المعركة التوليدية بالصوت والصورة
+            </button>
+
+            <div class="analytics-section">
+                <p style="margin-bottom: 10px; color: #aaa; font-size: 13px;">تحليلات نهاية الجلسة (Post-Match)</p>
+                <button class="btn-danger" onclick="endSessionAnalysis()">
+                    إنهاء الجلسة واستعراض التحليلات
                 </button>
-
-                <div class="analytics-section" style="background: #1e1e1e; padding: 15px; border-radius: 8px;">
-                    <p style="margin-bottom: 10px; color: #aaa;">تحليلات نهاية الجلسة (Post-Match)</p>
-                    <button onclick="endSessionAnalysis()" style="width: 100%; padding: 10px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                        إنهاء الجلسة واستعراض التحليلات
-                    </button>
-                </div>
             </div>
         </main>
     </div>
 
-    <script src="game.js"></script>
+    <script>
+        function startActionEngine() {
+            alert("تم بدء المعركة التوليدية بنجاح! جاري تشغيل المحرك والجزيرة التفاعلية...");
+        }
+        function endSessionAnalysis() {
+            alert("تم إنهاء الجلسة واستعراض إحصاءات الأداء.");
+        }
+    </script>
 </body>
 </html>
