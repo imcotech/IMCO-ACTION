@@ -1,19 +1,40 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("IMCO Action Engine Initialized.");
+// ==========================================
+// IMCO Action - Core Game Engine (game.js)
+// ==========================================
 
-    // تفعيل أزرار البدء في القسمين
-    const buttons = document.querySelectorAll("button, .btn-success");
-    buttons.forEach(function (btn) {
+console.log("IMCO Action Engine Initialized.");
+
+document.addEventListener("DOMContentLoaded", function () {
+    // ربط وتفعيل أزرار بدء المعركة والجلسة التوليدية
+    const startButtons = document.querySelectorAll("button");
+    
+    startButtons.forEach(function(btn) {
         btn.addEventListener("click", function () {
-            alert("تم بدء المعركة بنجاح! جاري تحميل المحرك التوليدي...");
+            const btnText = this.innerText.trim();
+            if (btnText.includes("ابدأ")) {
+                startActionEngine(btnText);
+            } else if (btnText.includes("إنهاء") || btnText.includes("تحليلات")) {
+                endSessionAnalysis();
+            }
         });
     });
 });
 
-function triggerRandomEvent() {
-    alert("تم إطلاق حدث عشوائي توليدي جديد بنجاح!");
+function startActionEngine(mode) {
+    console.log("Starting engine mode: " + mode);
+    alert("تم بدء المعركة التوليدية بنجاح! جاري تشغيل المحرك ثلاثي الأبعاد والجزيرة التفاعلية...");
+    
+    // محاكاة تشغيل الشاشة السوداء والمحرك
+    const canvases = document.querySelectorAll("canvas, div[style*='background: black'], .canvas-container");
+    canvases.forEach(function(el) {
+        el.style.border = "2px solid #00ff66";
+    });
 }
 
-function endSession() {
-    alert("تم إنهاء الجلسة واستعراض تحليلات الأداء بنجاح.");
+function triggerRandomEvent() {
+    alert("تم إطلاق حدث عشوائي توليدي ديناميكي جديد بنجاح!");
+}
+
+function endSessionAnalysis() {
+    alert("تم إنهاء الجلسة. جاري استعراض إحصاءات الأداء والتحليلات النهائية...");
 }
