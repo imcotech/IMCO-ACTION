@@ -58,3 +58,61 @@
     <script src="game.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMCO Action - Full 3D Audio & Visual Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.playcanvas.com/playcanvas-stable.min.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1>IMCO Action</h1>
+            <p>لعبة المعركة الملكية التوليدية - النسخة الكاملة</p>
+        </header>
+        <main>
+            <div id="dashboard">
+                <div id="canvas-container">
+                    <canvas id="application-canvas"></canvas>
+                </div>
+
+                <button id="start-btn" class="action-btn">ابدأ المعركة التوليدية بالصوت والصورة</button>
+                
+                <div id="analytics-section" class="analytics-box">
+                    <h3>تحليلات نهاية الجلسة (Post-Match)</h3>
+                    <div id="analytics-display">اضغط على "إنهاء الجلسة" لعرض إحصاءات الأداء</div>
+                    <button id="analytics-btn" class="analytics-action-btn">إنهاء الجلسة واستعراض التحليلات</button>
+                </div>
+
+                <div id="leaderboard-section" class="leaderboard-box">
+                    <h3>لوحة المتصدرين الحية (حسب المهارة)</h3>
+                    <div id="leaderboard-list">1. اللاعب_المهاري - 1250 نقطة</div>
+                </div>
+
+                <div id="events-section" class="events-box">
+                    <h3>الفعاليات الديناميكية التوليدية (Fair Play)</h3>
+                    <button id="event-btn" class="event-action-btn">إطلاق حدث عشوائي بالذكاء الاصطناعي</button>
+                </div>
+
+                <div id="loadout-section" class="loadout-box">
+                    <h3>تخصيص المظهر والعتاد المتوازن</h3>
+                    <input type="text" id="gear-input" placeholder="اكتب وصف المظهر التجميلي..." class="text-input">
+                    <button id="gear-btn" class="gear-action-btn">توليد المظهر المخصص</button>
+                </div>
+
+                <div id="vip-section" class="vip-box">
+                    <h3>باقات اشتراك VIP الشهري</h3>
+                    <p>احصل على مزايا تجميلية وتسهيلات بسيطة متوازنة</p>
+                    <button id="vip-btn" class="vip-action-btn">ترقية إلى VIP (شهرى)</button>
+                </div>
+
+                <div id="status-display">جاهز لتشغيل المحرك بالكامل...</div>
+            </div>
+        </main>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

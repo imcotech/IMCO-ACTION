@@ -149,7 +149,7 @@ body {
     width: 100%;
     font-weight: bold;
 }
-.vip-action-btn:hover {
+.vip-box-action-btn:hover {
     opacity: 0.9;
 }
 #status-display {
