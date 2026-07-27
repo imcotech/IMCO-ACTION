@@ -16,6 +16,21 @@ function updateLeaderboard() {
     `;
 }
 
+document.getElementById('analytics-btn').addEventListener('click', () => {
+    const analyticsDisplay = document.getElementById('analytics-display');
+    const status = document.getElementById('status-display');
+    status.innerText = "جاري تحليل أداء الجلسة بالذكاء الاصطناعي...";
+    setTimeout(() => {
+        analyticsDisplay.innerHTML = `
+            <strong>ملخص الجلسة:</strong><br>
+            • زمن الصمود: 14 دقيقة<br>
+            • دقة التصويب: 84%<br>
+            • نقاط المهارة المكتسبة: +120 نقطة
+        `;
+        status.innerText = "تم إنهاء الجلسة واستعراض التحليلات بنجاح.";
+    }, 1500);
+});
+
 document.getElementById('event-btn').addEventListener('click', () => {
     const status = document.getElementById('status-display');
     const eventsList = [
