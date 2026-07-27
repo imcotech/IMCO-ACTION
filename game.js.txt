@@ -12,4 +12,45 @@ document.getElementById('vip-btn').addEventListener('click', () => {
     setTimeout(() => {
         status.innerText = "تهانينا! تم تفعيل باقة VIP الشهرية بنجاح، استمتع بالميزات الحصرية وتوليد الشخصيات المتقدمة.";
     }, 1500);
+});document.getElementById('start-btn').addEventListener('click', () => {
+    const status = document.getElementById('status-display');
+    status.innerText = "جاري الدخول إلى خادم المعركة الملكية العادلة (Fair Play)...";
+    setTimeout(() => {
+        status.innerText = "تم تكافؤ الفرص بين جميع اللاعبين! انطلاق المعركة...";
+    }, 2000);
+});
+
+document.getElementById('event-btn').addEventListener('click', () => {
+    const status = document.getElementById('status-display');
+    const eventsList = [
+        "حدث عاصفة رملية مفاجئة (تأثير بصرى متساوى للجميع)",
+        "حدث إسقاط إمدادات تجميلية محايدة فى منتصف الخريطة",
+        "حدث تعديل إضاءة الخريطة بنظام الذكاء الاصطناعي لزيادة الحماس"
+    ];
+    const randomEvent = eventsList[Math.floor(Math.random() * eventsList.length)];
+    status.innerText = "جاري توليد حدث ديناميكي عادل عبر الذكاء الاصطناعي...";
+    setTimeout(() => {
+        status.innerText = `تم إطلاق الحدث بنجاح: ${randomEvent}`;
+    }, 2000);
+});
+
+document.getElementById('gear-btn').addEventListener('click', () => {
+    const gearInput = document.getElementById('gear-input').value;
+    const status = document.getElementById('status-display');
+    if(!gearInput.trim()) {
+        status.innerText = "الرجاء كتابة وصف المظهر أو العتاد التجميلي أولاً!";
+        return;
+    }
+    status.innerText = `جاري تجهيز التخصيص التجميلي المتوازن ("${gearInput}")...`;
+    setTimeout(() => {
+        status.innerText = `تمت إضافة المظهر المخصص بنجاح (ضمن حدود اللعب العادل الفير بلاى)!`;
+    }, 2000);
+});
+
+document.getElementById('vip-btn').addEventListener('click', () => {
+    const status = document.getElementById('status-display');
+    status.innerText = "جاري تفعيل باقة الـ VIP الشهرية (ميزات تجميلية وتسهيلات بسيطة غير مؤثرة قتالياً)...";
+    setTimeout(() => {
+        status.innerText = "تهانينا! تم تفعيل اشتراك الـ VIP بنجاح ضمن قواعد التوازن والـ Fair Play.";
+    }, 1500);
 });
