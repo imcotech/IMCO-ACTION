@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMCO Action - Battle Royale</title>
+    <title>IMCO Action - Battle Royale & VIP</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,6 +15,11 @@
         <main>
             <div id="dashboard">
                 <button id="start-btn" class="action-btn">ابدأ الجلسة التوليدية</button>
+                <div id="vip-section" class="vip-box">
+                    <h3>باقات اشتراك VIP الشهري</h3>
+                    <p>احصل على ميزات توليدية غير محدودة وصور مخصصة بالذكاء الاصطناعي</p>
+                    <button id="vip-btn" class="vip-action-btn">ترقية إلى VIP (شهرى)</button>
+                </div>
                 <div id="status-display">جاهز للإطلاق...</div>
             </div>
         </main>

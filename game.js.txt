@@ -5,3 +5,11 @@ document.getElementById('start-btn').addEventListener('click', () => {
         status.innerText = "تم تهيئة السيرفر بنجاح! انطلاق اللعبة...";
     }, 2000);
 });
+
+document.getElementById('vip-btn').addEventListener('click', () => {
+    const status = document.getElementById('status-display');
+    status.innerText = "جاري تفعيل اشتراك VIP الشهري للميزات المخصصة...";
+    setTimeout(() => {
+        status.innerText = "تهانينا! تمت تفعيل باقة VIP الشهرية بنجاح، استمتع بالميزات الحصرية.";
+    }, 1500);
+});

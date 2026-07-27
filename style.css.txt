@@ -16,6 +16,8 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     border: 1px solid #30363d;
+    max-width: 450px;
+    width: 100%;
 }
 .action-btn {
     background-color: #238636;
@@ -25,13 +27,46 @@ body {
     font-size: 16px;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
     transition: background 0.3s;
+    width: 100%;
 }
 .action-btn:hover {
     background-color: #2ea043;
 }
-#status-display {
-    margin-top: 15px;
+.vip-box {
+    margin-top: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, #21262d, #30363d);
+    border: 1px solid #d29922;
+    border-radius: 8px;
+}
+.vip-box h3 {
+    color: #f0883e;
+    margin-top: 0;
+}
+.vip-box p {
+    font-size: 13px;
     color: #8b949e;
+}
+.vip-action-btn {
+    background: linear-gradient(135deg, #9e6a03, #bb8009);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+.vip-action-btn:hover {
+    opacity: 0.9;
+}
+#status-display {
+    margin-top: 20px;
+    color: #8b949e;
+    font-weight: 500;
 }
