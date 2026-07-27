@@ -1,156 +1,19 @@
-// تهيئة محرك PlayCanvas الرسومي والصوتي
-const canvas = document.getElementById('application-canvas');
-const app = new pc.Application(canvas, {
-    mouseInput: new pc.MouseInput(canvas),
-    touchInput: new pc.TouchInput(canvas)
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("IMCO Action Engine Initialized.");
+
+    // تفعيل أزرار البدء في القسمين
+    const buttons = document.querySelectorAll("button, .btn-success");
+    buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            alert("تم بدء المعركة بنجاح! جاري تحميل المحرك التوليدي...");
+        });
+    });
 });
-app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
-app.setCanvasResolution(pc.RESOLUTION_AUTO);
 
-// نظام المؤثرات الصوتية التفاعلية عبر Web Audio API
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-function playSoundEffect(type) {
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-    const osc = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    osc.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-
-    if (type === 'start') {
-        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.3);
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.3);
-    } else if (type === 'event') {
-        osc.frequency.setValueAsValue ? osc.frequency.setValueAtTime(300, audioCtx.currentTime) : osc.frequency.setValueAtTime(300, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.4);
-        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.4);
-    } else {
-        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.2);
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.2);
-    }
+function triggerRandomEvent() {
+    alert("تم إطلاق حدث عشوائي توليدي جديد بنجاح!");
 }
 
-// حركة مشهد الجزيرة التوليدي ثلاثي الأبعاد مع مؤثرات بصرية
-app.on('update', function (dt) {
-    if (window.islandEntity) {
-        window.islandEntity.rotate(0, 15 * dt, 5 * dt);
-    }
-});
-
-function init3DWorld() {
-    const camera = new pc.Entity();
-    camera.addComponent("camera", {
-        clearColor: new pc.Color(0.03, 0.05, 0.08)
-    });
-    camera.setLocalPosition(0, 4, 8);
-    camera.lookAt(0, 0, 0);
-    app.root.addChild(camera);
-
-    const light = new pc.Entity();
-    light.addComponent("light", {
-        type: "directional",
-        color: new pc.Color(1, 0.9, 0.8),
-        intensity: 2.0
-    });
-    light.setLocalEulerAngles(50, 40, 0);
-    app.root.addChild(light);
-
-    // نموذج الجزيرة/الساحة ثلاثية الأبعاد
-    const island = new pc.Entity();
-    island.addComponent("render", {
-        type: "box"
-    });
-    island.setLocalScale(3.5, 0.6, 3.5);
-    app.root.addChild(island);
-    window.islandEntity = island;
-
-    app.start();
+function endSession() {
+    alert("تم إنهاء الجلسة واستعراض تحليلات الأداء بنجاح.");
 }
-
-init3DWorld();
-
-// الأزرار والمنطق البرمجي التكاملي
-document.getElementById('start-btn').addEventListener('click', () => {
-    playSoundEffect('start');
-    const status = document.getElementById('status-display');
-    status.innerText = "جاري تفعيل المؤثرات البصرية والسمعية لساحة المعركة...";
-    setTimeout(() => {
-        status.innerText = "انطلقت المعركة الملكية التوليدية بنجاح تام!";
-        updateLeaderboard();
-    }, 1500);
-});
-
-function updateLeaderboard() {
-    const board = document.getElementById('leaderboard-list');
-    board.innerHTML = `
-        1. أنت (المهارة الفردية) - 1350 نقطة<br>
-        2. كابتن_إمكو - 1280 نقطة<br>
-        3. المحارب_التوليدي - 1190 نقطة
-    `;
-}
-
-document.getElementById('analytics-btn').addEventListener('click', () => {
-    playSoundEffect('click');
-    const analyticsDisplay = document.getElementById('analytics-display');
-    const status = document.getElementById('status-display');
-    status.innerText = "جاري تحليل أداء الجلسة بالذكاء الاصطناعي...";
-    setTimeout(() => {
-        analyticsDisplay.innerHTML = `
-            <strong>ملخص الجلسة:</strong><br>
-            • زمن الصمود: 14 دقيقة<br>
-            • دقة التصويب: 84%<br>
-            • نقاط المهارة المكتسبة: +120 نقطة
-        `;
-        status.innerText = "تم إنهاء الجلسة واستعراض التحليلات بنجاح.";
-    }, 1200);
-});
-
-document.getElementById('event-btn').addEventListener('click', () => {
-    playSoundEffect('event');
-    const status = document.getElementById('status-display');
-    const eventsList = [
-        "حدث عاصفة رملية مفاجئة (تأثير بصرى متساوى للجميع)",
-        "حدث إسقاط إمدادات تجميلية محايدة فى منتصف الخريطة",
-        "حدث تعديل إضاءة الخريطة بنظام الذكاء الاصطناعي لزيادة الحماس"
-    ];
-    const randomEvent = eventsList[Math.floor(Math.random() * eventsList.length)];
-    status.innerText = "جاري توليد حدث ديناميكي عادل عبر الذكاء الاصطناعي...";
-    setTimeout(() => {
-        status.innerText = `تم إطلاق الحدث بنجاح: ${randomEvent}`;
-    }, 1500);
-});
-
-document.getElementById('gear-btn').addEventListener('click', () => {
-    playSoundEffect('click');
-    const gearInput = document.getElementById('gear-input').value;
-    const status = document.getElementById('status-display');
-    if(!gearInput.trim()) {
-        status.innerText = "الرجاء كتابة وصف المظهر أو العتاد التجميلي أولاً!";
-        return;
-    }
-    status.innerText = `جاري تجهيز التخصيص التجميلي المتوازن ("${gearInput}")...`;
-    setTimeout(() => {
-        status.innerText = `تمت إضافة المظهر المخصص بنجاح (ضمن حدود اللعب العادل الفير بلاى)!`;
-    }, 1500);
-});
-
-document.getElementById('vip-btn').addEventListener('click', () => {
-    playSoundEffect('start');
-    const status = document.getElementById('status-display');
-    status.innerText = "جاري تفعيل باقة الـ VIP الشهرية (ميزات تجميلية وتسهيلات بسيطة غير مؤثرة قتالياً)...";
-    setTimeout(() => {
-        status.innerText = "تهانينا! تم تفعيل اشتراك الـ VIP بنجاح ضمن قواعد التوازن والـ Fair Play.";
-    }, 1200);
-});
