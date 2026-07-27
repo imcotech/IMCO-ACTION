@@ -12,52 +12,113 @@ body {
 #game-container {
     text-align: center;
     background: #161b22;
-    padding: 40px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     border: 1px solid #30363d;
-    max-width: 450px;
+    max-width: 480px;
     width: 100%;
 }
 .action-btn {
     background-color: #238636;
     color: white;
     border: none;
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: 10px 20px;
+    font-size: 15px;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 5px;
     transition: background 0.3s;
     width: 100%;
 }
 .action-btn:hover {
     background-color: #2ea043;
 }
+.leaderboard-box, .events-box, .loadout-box {
+    margin-top: 12px;
+    padding: 10px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+}
+.leaderboard-box h3, .events-box h3, .loadout-box h3 {
+    color: #58a6ff;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+#leaderboard-list {
+    font-size: 12px;
+    color: #f0f6fc;
+    background: #0d1117;
+    padding: 6px;
+    border-radius: 4px;
+}
+.event-action-btn {
+    background-color: #8957e5;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.event-action-btn:hover {
+    background-color: #a371f7;
+}
+.text-input {
+    width: 100%;
+    padding: 7px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: white;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+.gear-action-btn {
+    background-color: #1f6feb;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.gear-action-btn:hover {
+    background-color: #388bfd;
+}
 .vip-box {
-    margin-top: 25px;
-    padding: 15px;
+    margin-top: 12px;
+    padding: 10px;
     background: linear-gradient(135deg, #21262d, #30363d);
     border: 1px solid #d29922;
     border-radius: 8px;
 }
 .vip-box h3 {
     color: #f0883e;
+    font-size: 13px;
     margin-top: 0;
+    margin-bottom: 4px;
 }
 .vip-box p {
-    font-size: 13px;
+    font-size: 11px;
     color: #8b949e;
+    margin: 0 0 6px 0;
 }
 .vip-action-btn {
     background: linear-gradient(135deg, #9e6a03, #bb8009);
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 15px;
+    padding: 7px;
+    font-size: 12px;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 10px;
     width: 100%;
     font-weight: bold;
     transition: opacity 0.3s;
@@ -66,7 +127,8 @@ body {
     opacity: 0.9;
 }
 #status-display {
-    margin-top: 20px;
+    margin-top: 10px;
     color: #8b949e;
+    font-size: 12px;
     font-weight: 500;
 }
