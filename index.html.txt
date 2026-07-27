@@ -3,93 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMCO Action - Battle Royale & VIP</title>
+    <title>IMCO Action - 3D Battle Royale & AI Engine</title>
     <link rel="stylesheet" href="style.css">
+    <!-- استدعاء مكتبة PlayCanvas للرسوميات ثلاثية الأبعاد عبر الويب -->
+    <script src="https://code.playcanvas.com/playcanvas-stable.min.js"></script>
 </head>
 <body>
     <div id="game-container">
         <header>
-            <h1>IMCO Action</h1>
-            <p>لعبة المعركة الملكية التوليدية بالذكاء الاصطناعي</p>
+            <h1>IMCO Action - 3D</h1>
+            <p>لعبة المعركة الملكية التوليدية بالذكاء الاصطناعي (بيئة ثلاثية الأبعاد)</p>
         </header>
         <main>
             <div id="dashboard">
-                <button id="start-btn" class="action-btn">ابدأ الجلسة التوليدية</button>
-                <div id="vip-section" class="vip-box">
-                    <h3>باقات اشتراك VIP الشهري</h3>
-                    <p>احصل على ميزات توليدية غير محدودة وصور مخصصة بالذكاء الاصطناعي</p>
-                    <button id="vip-btn" class="vip-action-btn">ترقية إلى VIP (شهرى)</button>
-                </div>
-                <div id="status-display">جاهز للإطلاق...</div>
-            </div>
-        </main>
-    </div>
-    <script src="game.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMCO Action - Battle Royale, VIP, Events & Leaderboards</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="game-container">
-        <header>
-            <h1>IMCO Action</h1>
-            <p>لعبة المعركة الملكية التوليدية بالذكاء الاصطناعي</p>
-        </header>
-        <main>
-            <div id="dashboard">
-                <button id="start-btn" class="action-btn">ابدأ الجلسة التوليدية</button>
-                
-                <div id="leaderboard-section" class="leaderboard-box">
-                    <h3>لوحة المتصدرين الحية (حسب المهارة)</h3>
-                    <div id="leaderboard-list">1. اللاعب_المهاري - 1250 نقطة</div>
+                <!-- مساحة عرض الجزيرة وساحة المعركة ثلاثية الأبعاد -->
+                <div id="canvas-container">
+                    <canvas id="application-canvas"></canvas>
                 </div>
 
-                <div id="events-section" class="events-box">
-                    <h3>الفعاليات الديناميكية التوليدية (Fair Play)</h3>
-                    <button id="event-btn" class="event-action-btn">إطلاق حدث عشوائي بالذكاء الاصطناعي</button>
-                </div>
-
-                <div id="loadout-section" class="loadout-box">
-                    <h3>تخصيص المظهر والعتاد المتوازن</h3>
-                    <input type="text" id="gear-input" placeholder="اكتب وصف المظهر التجميلي..." class="text-input">
-                    <button id="gear-btn" class="gear-action-btn">توليد المظهر المخصص</button>
-                </div>
-
-                <div id="vip-section" class="vip-box">
-                    <h3>باقات اشتراك VIP الشهري</h3>
-                    <p>احصل على مزايا تجميلية وتسهيلات بسيطة متوازنة</p>
-                    <button id="vip-btn" class="vip-action-btn">ترقية إلى VIP (شهرى)</button>
-                </div>
-
-                <div id="status-display">جاهز للإطلاق...</div>
-            </div>
-        </main>
-    </div>
-    <script src="game.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMCO Action - Battle Royale Engine</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="game-container">
-        <header>
-            <h1>IMCO Action</h1>
-            <p>لعبة المعركة الملكية التوليدية بالذكاء الاصطناعي</p>
-        </header>
-        <main>
-            <div id="dashboard">
-                <button id="start-btn" class="action-btn">ابدأ الجلسة التوليدية</button>
+                <button id="start-btn" class="action-btn">ابدأ الجلسة التوليدية للجزيرة</button>
                 
                 <div id="analytics-section" class="analytics-box">
                     <h3>تحليلات نهاية الجلسة (Post-Match)</h3>
@@ -119,7 +51,7 @@
                     <button id="vip-btn" class="vip-action-btn">ترقية إلى VIP (شهرى)</button>
                 </div>
 
-                <div id="status-display">جاهز للإطلاق...</div>
+                <div id="status-display">جاهز لإطلاق المحرك الثلاثي الأبعاد...</div>
             </div>
         </main>
     </div>

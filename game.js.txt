@@ -1,8 +1,61 @@
+// تهيئة محرك PlayCanvas لعرض ساحة المعركة ثلاثية الأبعاد
+const canvas = document.getElementById('application-canvas');
+const app = new pc.Application(canvas, {
+    mouseInput: new pc.MouseInput(canvas),
+    touchInput: new pc.TouchInput(canvas)
+});
+app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+app.setCanvasResolution(pc.RESOLUTION_AUTO);
+
+// إعداد المشهد التوليدي (الجزيرة وساحة المعركة)
+app.on('update', function (dt) {
+    // حركة دائرية خفيفة للكاميرا أو عناصر المعركة لإظهار الحيوية التوليدية
+    if (window.islandEntity) {
+        window.islandEntity.rotate(0, 10 * dt, 0);
+    }
+});
+
+function init3DWorld() {
+    // إنشاء الكاميرا
+    const camera = new pc.Entity();
+    camera.addComponent("camera", {
+        clearColor: new pc.Color(0.05, 0.07, 0.1)
+    });
+    camera.setLocalPosition(0, 5, 10);
+    camera.lookAt(0, 0, 0);
+    app.root.addChild(camera);
+
+    // إضافة إضاءة للجزيرة
+    const light = new pc.Entity();
+    light.addComponent("light", {
+        type: "directional",
+        color: new pc.Color(1, 1, 1),
+        intensity: 1.5
+    });
+    light.setLocalEulerAngles(45, 30, 0);
+    app.root.addChild(light);
+
+    // إنشاء نموذج تجريبي يمثل الجزيرة / ساحة المعركة التوليدية
+    const island = new pc.Entity();
+    island.addComponent("render", {
+        type: "box"
+    });
+    island.setLocalScale(4, 0.5, 4);
+    app.root.addChild(island);
+    window.islandEntity = island;
+
+    app.start();
+}
+
+// تشغيل المحرك ثلاثي الأبعاد عند تحميل الصفحة
+init3DWorld();
+
+// الأزرار والمنطق البرمجي للعبة
 document.getElementById('start-btn').addEventListener('click', () => {
     const status = document.getElementById('status-display');
-    status.innerText = "جاري الدخول إلى خادم المعركة الملكية العادلة (Fair Play)...";
+    status.innerText = "جاري توليد ساحة المعركة والجزيرة ثلاثية الأبعاد (Fair Play)...";
     setTimeout(() => {
-        status.innerText = "تم تكافؤ الفرص بين جميع اللاعبين! انطلاق المعركة...";
+        status.innerText = "تم بدء الجلسة التوليدية للجزيرة بنجاح!";
         updateLeaderboard();
     }, 2000);
 });
