@@ -1,160 +1,20 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #0d1117;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+// IMCO Action - Engine Core
+console.log("IMCO Action Engine Initialized Successfully.");
+
+document.addEventListener("DOMContentLoaded", function () {
+    const startBtn1 = document.querySelector("#game-container .btn-success, button");
+    
+    if (startBtn1) {
+        startBtn1.addEventListener("click", function () {
+            alert("تم بدء المعركة بنجاح! جاري تشغيل المحرك التوليدي...");
+        });
+    }
+});
+
+function triggerRandomEvent() {
+    alert("تم إطلاق حدث عشوائي توليدي جديد بنجاح!");
 }
-#game-container {
-    text-align: center;
-    background: #161b22;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-    border: 1px solid #30363d;
-    max-width: 520px;
-    width: 100%;
-    margin: 20px auto;
-}
-#canvas-container {
-    width: 100%;
-    height: 220px;
-    background: #000000;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    border: 1px solid #30363d;
-}
-#application-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-.action-btn {
-    background-color: #238636;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 5px;
-    transition: background 0.3s;
-    width: 100%;
-}
-.action-btn:hover {
-    background-color: #2ea043;
-}
-.analytics-box, .leaderboard-box, .events-box, .loadout-box {
-    margin-top: 10px;
-    padding: 10px;
-    background: #21262d;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-}
-.analytics-box h3, .leaderboard-box h3, .events-box h3, .loadout-box h3 {
-    color: #58a6ff;
-    font-size: 13px;
-    margin-top: 0;
-    margin-bottom: 6px;
-}
-#analytics-display, #leaderboard-list {
-    font-size: 12px;
-    color: #f0f6fc;
-    background: #0d1117;
-    padding: 6px;
-    border-radius: 4px;
-    margin-bottom: 6px;
-}
-.analytics-action-btn {
-    background-color: #da3633;
-    color: white;
-    border: none;
-    padding: 7px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-}
-.analytics-action-btn:hover {
-    background-color: #f85149;
-}
-.event-action-btn {
-    background-color: #8957e5;
-    color: white;
-    border: none;
-    padding: 7px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-}
-.event-action-btn:hover {
-    background-color: #a371f7;
-}
-.text-input {
-    width: 100%;
-    padding: 7px;
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    color: white;
-    box-sizing: border-box;
-    margin-bottom: 6px;
-    font-size: 12px;
-}
-.gear-action-btn {
-    background-color: #1f6feb;
-    color: white;
-    border: none;
-    padding: 7px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-}
-.gear-action-btn:hover {
-    background-color: #388bfd;
-}
-.vip-box {
-    margin-top: 10px;
-    padding: 10px;
-    background: linear-gradient(135deg, #21262d, #30363d);
-    border: 1px solid #d29922;
-    border-radius: 8px;
-}
-.vip-box h3 {
-    color: #f0883e;
-    font-size: 13px;
-    margin-top: 0;
-    margin-bottom: 4px;
-}
-.vip-box p {
-    font-size: 11px;
-    color: #8b949e;
-    margin: 0 0 6px 0;
-}
-.vip-action-btn {
-    background: linear-gradient(135deg, #9e6a03, #bb8009);
-    color: white;
-    border: none;
-    padding: 7px;
-    font-size: 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-}
-.vip-box-action-btn:hover {
-    opacity: 0.9;
-}
-#status-display {
-    margin-top: 10px;
-    color: #8b949e;
-    font-size: 12px;
-    font-weight: 500;
+
+function endSession() {
+    alert("تم إنهاء الجلسة واستعراض تحليلات الأداء بنجاح.");
 }
