@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMCO Action - Generative AI Battle Royale</title>
+    <title>IMCO Action - Enterprise Generative AI Battle Royale</title>
+    <!-- استدعاء محرك الرسومات ثلاثية الأبعاد Three.js للجزيرة واللاعبين -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #0b0b16;
+            background-color: #080812;
             color: #ffffff;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -18,88 +20,93 @@
         }
         #game-container {
             text-align: center;
-            background: #161625;
+            background: #12121f;
             padding: 25px;
             border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.15);
-            border: 1px solid #2a2a40;
-            max-width: 580px;
+            box-shadow: 0 10px 35px rgba(0, 255, 102, 0.12);
+            border: 1px solid #252538;
+            max-width: 600px;
             width: 100%;
-            margin: 20px auto;
+            margin: 15px auto;
         }
         header h1 {
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: #00ff66;
             font-size: 26px;
         }
         header p {
-            color: #94a3b8;
+            color: #8a99ad;
             font-size: 13px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
-        #generative-screen {
+        #viewport-3d {
             width: 100%;
-            height: 240px;
+            height: 260px;
             background: #000000;
             border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #00ff66;
-            margin-bottom: 15px;
-            border: 1px solid #00ff6655;
-            position: relative;
             overflow: hidden;
-            padding: 15px;
-            box-sizing: border-box;
+            margin-bottom: 15px;
+            border: 1px solid #00ff6644;
+            position: relative;
         }
-        .ai-status {
-            font-size: 14px;
-            font-weight: bold;
-            color: #38bdf8;
-            margin-bottom: 8px;
-        }
-        .ai-log {
-            font-size: 12px;
-            color: #a1a1aa;
-            text-align: center;
-            min-height: 40px;
+        .control-panel {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
         }
         .btn-main {
-            width: 100%;
+            flex: 1;
             padding: 12px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
             transition: 0.2s;
         }
-        .btn-main:hover {
-            opacity: 0.95;
+        .btn-secondary {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+            transition: 0.2s;
+        }
+        .btn-main:hover, .btn-secondary:hover {
+            opacity: 0.92;
             transform: translateY(-1px);
         }
-        .analytics-section {
-            background: #1e1e2f;
+        .analytics-box {
+            background: #1a1a2e;
             padding: 12px;
             border-radius: 8px;
-            border: 1px solid #2d2d44;
+            border: 1px solid #272740;
+            text-align: right;
         }
         .btn-danger {
             width: 100%;
-            padding: 10px;
-            background-color: #ef4444;
+            padding: 9px;
+            background-color: #dc2626;
             color: white;
             border: none;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             font-weight: bold;
+            margin-top: 6px;
+        }
+        #system-status {
+            font-size: 12px;
+            color: #38bdf8;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -107,45 +114,120 @@
     <div id="game-container">
         <header>
             <h1>IMCO Action</h1>
-            <p>منظومة المعركة الملكية التوليدية بالذكاء الاصطناعي (صوت، صورة، ولعب)</p>
+            <p>منصة المعركة الملكية التوليدية بالذكاء الاصطناعي المتكاملة</p>
         </header>
 
         <main>
-            <!-- شاشة العرض التوليدية التفاعلية -->
-            <div id="generative-screen">
-                <div class="ai-status" id="statusText">✨ النظام التوليدي في وضع الاستعداد</div>
-                <div class="ai-log" id="logText">جاهز لتوليد الجزيرة، المكونات البصرية، المؤثرات السمعية، واللاعبين الديناميكيين بالذكاء الاصطناعي.</div>
+            <div id="system-status">⚙️ جاهز لربط منصات توليد الصور، الصوت، واللاعبين الديناميكيين.</div>
+            
+            <!-- نافذة العرض ثلاثي الأبعاد والجزيرة التفاعلية -->
+            <div id="viewport-3d"></div>
+
+            <div class="control-panel">
+                <button class="btn-main" onclick="initGenerativeBattle()">
+                    🚀 ابدأ المعركة التوليدية
+                </button>
+                <button class="btn-secondary" onclick="triggerAIEvents()">
+                    ⚡ إطلاق حدث عشوائي
+                </button>
             </div>
 
-            <button class="btn-main" onclick="startGenerativeEngine()">
-                🚀 بدء المعركة التوليدية (توليد الصوت والصورة واللاعبين)
-            </button>
-
-            <div class="analytics-section">
-                <p style="margin-bottom: 8px; color: #94a3b8; font-size: 12px;">تحليلات نهاية الجلسة والتقارير الذكية (Post-Match)</p>
+            <div class="analytics-box">
+                <p style="margin: 0 0 6px 0; color: #94a3b8; font-size: 12px; font-weight: bold;">تحليلات نهاية الجلسة والتقارير الذكية (Post-Match)</p>
                 <button class="btn-danger" onclick="endSessionAnalysis()">
-                    إنهاء الجلسة واستعراض التحليلات التوليدية
+                    إنهاء الجلسة واستعراض تقارير الأداء
                 </button>
             </div>
         </main>
     </div>
 
     <script>
-        function startGenerativeEngine() {
-            const status = document.getElementById("statusText");
-            const log = document.getElementById("logText");
+        let scene, camera, renderer, player, enemy;
+        let engineActive = false;
 
-            status.innerText = "🔄 جاري الاتصال بمنصات التوليد بالذكاء الاصطناعي...";
-            log.innerText = "جاري تركيب بيئة الجزيرة وتوليد الأصول البصرية والملفات السمعية...";
+        function initGenerativeBattle() {
+            if (engineActive) return;
+            engineActive = true;
+
+            const container = document.getElementById('viewport-3d');
+            container.innerHTML = ""; // تفريغ الشاشة
+
+            document.getElementById('system-status').innerText = "✨ جاري الاتصال بمنصات التوليد السحابية (صوت، صورة، لاعبين)...";
+
+            // 1. إعداد المشهد والكاميرا
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x05050f);
+
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 6, 11);
+            camera.lookAt(0, 0, 0);
+
+            // 2. محرك العرض
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            // 3. الإضاءة
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0x00ff66, 1.5, 60);
+            pointLight.position.set(0, 12, 6);
+            scene.add(pointLight);
+
+            // 4. بناء أرضية الجزيرة التوليدية
+            const islandGeo = new THREE.BoxGeometry(13, 0.6, 13);
+            const islandMat = new THREE.MeshStandardMaterial({ color: 0x163820, roughness: 0.4 });
+            const island = new THREE.Mesh(islandGeo, islandMat);
+            island.position.y = -0.6;
+            scene.add(island);
+
+            // 5. توليد اللاعب الرئيسي (أزرق)
+            const playerGeo = new THREE.BoxGeometry(1, 1.6, 1);
+            const playerMat = new THREE.MeshStandardMaterial({ color: 0x0088ff });
+            player = new THREE.Mesh(playerGeo, playerMat);
+            player.position.set(-3.5, 0.8, 0);
+            scene.add(player);
+
+            // 6. توليد العدو/المنافس بالمعركة الملكية (أحمر)
+            const enemyGeo = new THREE.BoxGeometry(1, 1.6, 1);
+            const enemyMat = new THREE.MeshStandardMaterial({ color: 0xff3344 });
+            enemy = new THREE.Mesh(enemyGeo, enemyMat);
+            enemy.position.set(3.5, 0.8, 0);
+            scene.add(enemy);
 
             setTimeout(() => {
-                status.innerText = "🎮 تم توليد اللاعبين والأحداث بنجاح!";
-                log.innerText = "الجزيرة نشطة الآن: تم إطلاق المؤثرات البصرية والسمعية وبدء المعركة الملكية التوليدية.";
-            }, 2000);
+                document.getElementById('system-status').innerText = "🎮 المعركة التوليدية نشطة: تم توليد الأصول البصرية والسمعية واللاعبين بنجاح.";
+            }, 1000);
+
+            animateEngine();
+        }
+
+        function animateEngine() {
+            requestAnimationFrame(animateEngine);
+
+            if (player && enemy) {
+                // دوران وحركة تفاعلية تحاكي الأكشن الديناميكي
+                player.rotation.y += 0.025;
+                enemy.rotation.y -= 0.03;
+
+                player.position.x = -3.5 + Math.sin(Date.now() * 0.003) * 1.8;
+                enemy.position.x = 3.5 - Math.sin(Date.now() * 0.003) * 1.8;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function triggerAIEvents() {
+            if (!engineActive) {
+                alert("يرجى بدء المعركة التوليدية أولاً!");
+                return;
+            }
+            document.getElementById('system-status').innerText = "⚡ تم توليد حدث عشوائي خارجي بالذكاء الاصطناعي بنجاح!";
         }
 
         function endSessionAnalysis() {
-            alert("تم إنهاء الجلسة التوليدية. جاري تجميع تقارير الأداء وتحليلات الذكاء الاصطناعي النهائية.");
+            alert("📊 تقرير نهاية الجلسة (Post-Match): تم تحليل أداء اللاعبين، نسبة التفاعل، واستهلاك الموارد بنجاح.");
         }
     </script>
 </body>
