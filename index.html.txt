@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMCO Action - Battle Royale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1>IMCO Action</h1>
+            <p>لعبة المعركة الملكية التوليدية بالذكاء الاصطناعي</p>
+        </header>
+        <main>
+            <div id="dashboard">
+                <button id="start-btn" class="action-btn">ابدأ الجلسة التوليدية</button>
+                <div id="status-display">جاهز للإطلاق...</div>
+            </div>
+        </main>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

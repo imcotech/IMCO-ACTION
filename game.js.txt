@@ -1,0 +1,7 @@
+document.getElementById('start-btn').addEventListener('click', () => {
+    const status = document.getElementById('status-display');
+    status.innerText = "جاري توليد بيئة المعركة بالذكاء الاصطناعي... يرجى الانتظار.";
+    setTimeout(() => {
+        status.innerText = "تم تهيئة السيرفر بنجاح! انطلاق اللعبة...";
+    }, 2000);
+});
