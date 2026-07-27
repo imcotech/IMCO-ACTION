@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMCO Action - 3D Battle Royale</title>
+    <title>IMCO Action - Generative AI Battle Royale</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #121212;
+            background-color: #0b0b16;
             color: #ffffff;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -18,52 +18,88 @@
         }
         #game-container {
             text-align: center;
-            background: #1e1e2f;
+            background: #161625;
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            border: 1px solid #38383d;
-            max-width: 520px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.15);
+            border: 1px solid #2a2a40;
+            max-width: 580px;
             width: 100%;
             margin: 20px auto;
         }
         header h1 {
             margin-bottom: 5px;
             color: #00ff66;
-            font-size: 28px;
+            font-size: 26px;
         }
         header p {
-            color: #b0b0b0;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+        #generative-screen {
+            width: 100%;
+            height: 240px;
+            background: #000000;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #00ff66;
+            margin-bottom: 15px;
+            border: 1px solid #00ff6655;
+            position: relative;
+            overflow: hidden;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .ai-status {
             font-size: 14px;
-            margin-bottom: 20px;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+        .ai-log {
+            font-size: 12px;
+            color: #a1a1aa;
+            text-align: center;
+            min-height: 40px;
         }
         .btn-main {
             width: 100%;
             padding: 12px;
-            background-color: #28a745;
+            background: linear-gradient(135deg, #10b981, #059669);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: 0.2s;
         }
         .btn-main:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translateY(-1px);
         }
         .analytics-section {
-            background: #1e1e1e;
-            padding: 15px;
+            background: #1e1e2f;
+            padding: 12px;
             border-radius: 8px;
+            border: 1px solid #2d2d44;
         }
         .btn-danger {
             width: 100%;
             padding: 10px;
-            background-color: #dc3545;
+            background-color: #ef4444;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 14px;
             cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -71,33 +107,45 @@
     <div id="game-container">
         <header>
             <h1>IMCO Action</h1>
-            <p>لعبة المعركة الملكية التوليدية بالذكاء الاصطناعي</p>
+            <p>منظومة المعركة الملكية التوليدية بالذكاء الاصطناعي (صوت، صورة، ولعب)</p>
         </header>
 
         <main>
-            <div style="background: black; width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: #00ff66; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333;">
-                [ محرك العرض المرئي ثلاثي الأبعاد ]
+            <!-- شاشة العرض التوليدية التفاعلية -->
+            <div id="generative-screen">
+                <div class="ai-status" id="statusText">✨ النظام التوليدي في وضع الاستعداد</div>
+                <div class="ai-log" id="logText">جاهز لتوليد الجزيرة، المكونات البصرية، المؤثرات السمعية، واللاعبين الديناميكيين بالذكاء الاصطناعي.</div>
             </div>
 
-            <button class="btn-main" onclick="startActionEngine()">
-                ابدأ المعركة التوليدية بالصوت والصورة
+            <button class="btn-main" onclick="startGenerativeEngine()">
+                🚀 بدء المعركة التوليدية (توليد الصوت والصورة واللاعبين)
             </button>
 
             <div class="analytics-section">
-                <p style="margin-bottom: 10px; color: #aaa; font-size: 13px;">تحليلات نهاية الجلسة (Post-Match)</p>
+                <p style="margin-bottom: 8px; color: #94a3b8; font-size: 12px;">تحليلات نهاية الجلسة والتقارير الذكية (Post-Match)</p>
                 <button class="btn-danger" onclick="endSessionAnalysis()">
-                    إنهاء الجلسة واستعراض التحليلات
+                    إنهاء الجلسة واستعراض التحليلات التوليدية
                 </button>
             </div>
         </main>
     </div>
 
     <script>
-        function startActionEngine() {
-            alert("تم بدء المعركة التوليدية بنجاح! جاري تشغيل المحرك والجزيرة التفاعلية...");
+        function startGenerativeEngine() {
+            const status = document.getElementById("statusText");
+            const log = document.getElementById("logText");
+
+            status.innerText = "🔄 جاري الاتصال بمنصات التوليد بالذكاء الاصطناعي...";
+            log.innerText = "جاري تركيب بيئة الجزيرة وتوليد الأصول البصرية والملفات السمعية...";
+
+            setTimeout(() => {
+                status.innerText = "🎮 تم توليد اللاعبين والأحداث بنجاح!";
+                log.innerText = "الجزيرة نشطة الآن: تم إطلاق المؤثرات البصرية والسمعية وبدء المعركة الملكية التوليدية.";
+            }, 2000);
         }
+
         function endSessionAnalysis() {
-            alert("تم إنهاء الجلسة واستعراض إحصاءات الأداء.");
+            alert("تم إنهاء الجلسة التوليدية. جاري تجميع تقارير الأداء وتحليلات الذكاء الاصطناعي النهائية.");
         }
     </script>
 </body>
